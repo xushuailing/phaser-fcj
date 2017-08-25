@@ -1,0 +1,11 @@
+<TextureAtlas imagePath="person.png">
+	<SubTexture name="01.png" x="261" y="205" width="259" height="203"/>
+	<SubTexture name="02.png" x="522" y="205" width="259" height="203"/>
+	<SubTexture name="03.png" x="522" y="0" width="259" height="203"/>
+	<SubTexture name="04.png" x="261" y="410" width="259" height="203"/>
+	<SubTexture name="05.png" x="522" y="410" width="259" height="203"/>
+	<SubTexture name="06.png" x="261" y="0" width="259" height="203"/>
+	<SubTexture name="07.png" x="0" y="410" width="259" height="203"/>
+	<SubTexture name="08.png" x="0" y="205" width="259" height="203"/>
+	<SubTexture name="09.png" x="0" y="0" width="259" height="203"/>
+</TextureAtlas>

@@ -1,0 +1,40 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+img {
+  border: none;
+}
+input,
+select,
+textarea {
+  outline: none;
+  border: none;
+  background: none;
+}
+textarea {
+  resize: none;
+}
+a {
+  text-decoration: none;
+}
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Microsoft YaHei";
+}
+.swiper-slide.page2.swiper-no-swiping,
+#container {
+  height: 100%;
+  width: 100%;
+}

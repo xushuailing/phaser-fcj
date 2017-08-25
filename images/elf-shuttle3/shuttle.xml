@@ -1,0 +1,26 @@
+<TextureAtlas imagePath="person.png">
+	<SubTexture name="01.jpg" x="644" y="1710" width="320" height="568"/>
+	<SubTexture name="02.jpg" x="1610" y="1140" width="320" height="568"/>
+	<SubTexture name="03.jpg" x="1610" y="570" width="320" height="568"/>
+	<SubTexture name="04.jpg" x="1610" y="0" width="320" height="568"/>
+	<SubTexture name="05.jpg" x="1288" y="1710" width="320" height="568"/>
+	<SubTexture name="06.jpg" x="1288" y="1140" width="320" height="568"/>
+	<SubTexture name="07.jpg" x="1288" y="570" width="320" height="568"/>
+	<SubTexture name="08.jpg" x="1288" y="0" width="320" height="568"/>
+	<SubTexture name="09.jpg" x="966" y="1710" width="320" height="568"/>
+	<SubTexture name="10.jpg" x="966" y="1140" width="320" height="568"/>
+	<SubTexture name="11.jpg" x="966" y="570" width="320" height="568"/>
+	<SubTexture name="12.jpg" x="966" y="0" width="320" height="568"/>
+	<SubTexture name="13.jpg" x="1610" y="1710" width="320" height="568"/>
+	<SubTexture name="14.jpg" x="644" y="1140" width="320" height="568"/>
+	<SubTexture name="15.jpg" x="644" y="570" width="320" height="568"/>
+	<SubTexture name="16.jpg" x="644" y="0" width="320" height="568"/>
+	<SubTexture name="17.jpg" x="322" y="1710" width="320" height="568"/>
+	<SubTexture name="18.jpg" x="322" y="1140" width="320" height="568"/>
+	<SubTexture name="19.jpg" x="322" y="570" width="320" height="568"/>
+	<SubTexture name="20.jpg" x="322" y="0" width="320" height="568"/>
+	<SubTexture name="21.jpg" x="0" y="1710" width="320" height="568"/>
+	<SubTexture name="22.jpg" x="0" y="1140" width="320" height="568"/>
+	<SubTexture name="23.jpg" x="0" y="570" width="320" height="568"/>
+	<SubTexture name="24.jpg" x="0" y="0" width="320" height="568"/>
+</TextureAtlas>
