@@ -40,10 +40,10 @@ function bgmFun() {
     }
 }
 /* 调位置 */
-function key(name) {
+/* function key(name) {
     name.inputEnabled = true;
     name.input.enableDrag();
     name.events.onDragStop.add(function () {
         console.log("x:" + name.x + "," + name.y);
     }, this);
-}
+} */

@@ -55,9 +55,6 @@ let loaderState = function (game) {
         game.load.image('right', 'images/right.png');
         game.load.image('shadow', 'images/shadow.png');
         game.load.image('returnMap', 'images/returnMap.png');
-        game.load.image('through_bg', 'images/through/bg.jpg');
-        game.load.image('through_ball', 'images/through/ball.png');
-        game.load.image('through_mina', 'images/through/mina.png');
         game.load.image('hintMap', 'images/hintMap.png');
         game.load.image('hintReturn', 'images/hintReturn.png');
         game.load.image('hint', 'images/hint.png');
