@@ -1,9 +1,9 @@
 /**
  * 加载资源
  */
-let loaderState = function (game) {
+var loaderState = function (game) {
     var loading_line, log
-    this.init = () => {
+    this.init = function() {
         // 添加logo
         game.add.image(game.world.centerX / 1.9, game.world.centerY / 5, 'logo');
         // 添加进图条
@@ -18,7 +18,7 @@ let loaderState = function (game) {
         yuan.play('tidy', 10, true);
 
     }
-    this.preload = () => {
+    this.preload = function() {
         game.load.image('map', 'images/map.jpg');
         game.load.atlasXML('tel', 'images/elf-tel/tel.png', 'images/elf-tel/tel.xml')
         game.load.atlasXML('person', 'images/elf-person/person.png', 'images/elf-person/person.xml');
@@ -39,12 +39,12 @@ let loaderState = function (game) {
         game.load.atlasXML('shuttle2', 'images/elf-shuttle2/shuttle.jpg', 'images/elf-shuttle2/shuttle.xml')
         game.load.atlasXML('shuttle3', 'images/elf-shuttle3/shuttle.jpg', 'images/elf-shuttle3/shuttle.xml')
         game.load.atlasXML('bgIcon', 'images/elf-bgm/bgm.png', 'images/elf-bgm/bgm.xml')
-        game.load.audio('tel_mp3', ['images/audio/telMp3.mp3','images/audio/telMp3.ogg','images/audio/telMp3.wav'])
-        game.load.audio('returnMp3', ['images/audio/returnMp3.mp3','images/audio/returnMp3.ogg','images/audio/returnMp3.wav'])
-        game.load.audio('photogMp3', ['images/audio/photogMp3.mp3','images/audio/photogMp3.ogg','images/audio/telMp3.wav'])
-        game.load.audio('bellMp3', ['images/audio/bellMp3.mp3','images/audio/bellMp3.ogg','images/audio/telMp3.wav'])
-        game.load.audio('bg_mp3', ['images/audio/bg_Mp3.mp3','images/audio/bg_Mp3.ogg'])
-        game.load.audio('stateMp3', ['images/audio/stateMp3.mp3','images/audio/stateMp3.ogg'])
+        game.load.audio('tel_mp3', ['images/audio/telMp3.mp3', 'images/audio/telMp3.ogg', 'images/audio/telMp3.wav'])
+        game.load.audio('returnMp3', ['images/audio/returnMp3.mp3', 'images/audio/returnMp3.ogg', 'images/audio/returnMp3.wav'])
+        game.load.audio('photogMp3', ['images/audio/photogMp3.mp3', 'images/audio/photogMp3.ogg', 'images/audio/telMp3.wav'])
+        game.load.audio('bellMp3', ['images/audio/bellMp3.mp3', 'images/audio/bellMp3.ogg', 'images/audio/telMp3.wav'])
+        game.load.audio('bg_mp3', ['images/audio/bg_Mp3.mp3', 'images/audio/bg_Mp3.ogg'])
+        game.load.audio('stateMp3', ['images/audio/stateMp3.mp3', 'images/audio/stateMp3.ogg'])
         game.load.image('glass', 'images/glass.png');
         game.load.image('cloud', 'images/cloud.png');
         game.load.image('click', 'images/click.png');
@@ -55,9 +55,6 @@ let loaderState = function (game) {
         game.load.image('right', 'images/right.png');
         game.load.image('shadow', 'images/shadow.png');
         game.load.image('returnMap', 'images/returnMap.png');
-        game.load.image('through_bg', 'images/through/bg.jpg');
-        game.load.image('through_ball', 'images/through/ball.png');
-        game.load.image('through_mina', 'images/through/mina.png');
         game.load.image('hintMap', 'images/hintMap.png');
         game.load.image('hintReturn', 'images/hintReturn.png');
         game.load.image('hint', 'images/hint.png');
@@ -111,7 +108,19 @@ let loaderState = function (game) {
             loading_line.autoScroll(20, 0)
         });
     }
-    this.create = () => {
+    this.create = function() {
+        shareOption({
+            title: '富春江集团企业文化动画展示',
+            link: 'http://saas.zeego.cn/project/FCJGroup/FCJ',
+            pic: 'http://saas.zeego.cn/project/FCJGroup/FCJ/images/share_logo.jpg',
+            desc: '这个“主题公园”向你呈现富春江集团“实”的企业文化',
+            success: function () {
+                // 成功回调
+            },
+            cancel: function () {
+                // 失败回调
+            }
+        })
         game.state.add('menu', menuState)
         game.state.start('menu');
 

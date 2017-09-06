@@ -18,7 +18,7 @@ var common = {
         shadow = game.add.image(game.world.centerX / 2, 900, 'shadow')
         return shadow
     },
-    return: function (X, Y, T, R) { // 返回地图事件  
+    return: function (X, Y, T, R) { // 返回地图事件
         returnMap.events.onInputDown.add(function () {
             common.returnMp3() // 返回音乐
             game.state.start('menu');
@@ -151,14 +151,6 @@ var common = {
 
         }, this);
     },
-    personTween: function (name, boole) { // 人物补间动画
-        if (boole) {
-            var Tween = game.add.tween(name).to({ x: .01, y: .01 }, 500, Phaser.Easing.Linear.None, true);
-        } else {
-            var Tween = game.add.tween(name).to({ x: game.world.centerX, y: game.world.centerY }, 500, Phaser.Easing.Linear.None, true)
-        }
-        return Tween
-    },
     throughTween: function (name, scene, sum, callBack, callBack1) { // 虫洞动画
         returnMap.inputEnabled = false // 关闭返回地图按键
         // person.frame = 14 // 设置人物显示姿势
@@ -183,7 +175,7 @@ var common = {
         shuttle.animations.play(shuttle, speed, false).onComplete.add(function () {
             common.hide_R_L()// 隐藏左右按钮
             name.bringToTop() // 层级提高
-            common.Tween(name, true).onComplete.add(function () {// 补间动画 
+            common.Tween(name, true).onComplete.add(function () {// 补间动画
                 shuttle.destroy()
                 if (!sum) {
                     if (callBack) {
@@ -258,12 +250,27 @@ var common = {
     },
     returnMp3: function () { // 返回音乐
         game.add.audio('returnMp3').play('', 0, 2, false)
+    },
+    resumeMp3: function (stateMp3) { // 恢复背景音乐
+        if (bgIcon.frame != 24) { // 判断用户是不是进去之前就暂停背景音乐
+            var sum = 0
+            var a = setInterval(function () {
+                bgMp3.resume() // 恢复背景音乐
+                sum += .1
+                bgMp3.volume = Math.floor(sum * 10) / 100
+                if (Math.floor(sum) == 5) {
+                    clearInterval(a)
+                }
+            }, 80)
+        }
+        stateMp3.stop() //停止stateMp3
+        bgIcon.visible = true // 显示背景音乐图标
     }
 }
 var isHint = 0 // 控制第一次进入场馆的提示指示
 var main1State = function (game) {
     var sum = sum1 = sum2 = 0, text, leftTime, rightTime, left, right, returnMap, closeButton, person, shadow, istel
-    this.create = () => {
+    this.create = function () {
         var a01 = game.add.group() // 创建地图组
         var a01_map = a01.create(0, 0, 'a01-01')
         var popup1 = game.add.image(0, 0, 'a01-02')
@@ -321,9 +328,9 @@ var main1State = function (game) {
             common.hide_R_L() // 隐藏左右按钮
             common.clickVisible(arrClick) // 移除所有点击事件
             common.MP3(tel_mp3, 'pause') // 关闭电话声音
-            common.Tween(popup1, true).onComplete.add(function () { // 补间动画
+            common.Tween(popup1, true).onComplete.add(function () { // 补间动画             
                 if (!sum) {
-                    var content = '1985年，富春江集团创始人孙庆炎，三\n顾茅庐，最终用诚意感动上海电缆研究\n所专家来厂技术援助。渴了乏了喝一杯\n土烧酒，饿了困了吃一个茶叶蛋，凭借\n着  “不达目的不罢休”  的坚韧品质，孕\n育出了  ”刻苦、励志、实干、创新”  企\n业精神。'
+                    var content = `1985年，富春江集团创始人孙庆炎，三\n顾茅庐，最终用诚意感动上海电缆研究\n所专家来厂技术援助。渴了乏了喝一杯\n土烧酒，饿了困了啃一个冷馒头，正是\n凭借着这些  “不达目的不罢休”  的坚韧\n品质，才孕育出了  ”刻苦、励志、实干\n、创新”  企业精神。`
                     text = game.add.text(100, 410, '', { fontSize: "26px", fill: "#000", fontWeight: '400' })
                     /* 文字打印效果 */
                     common.PrintText(text, content, function () {
@@ -473,12 +480,12 @@ var main1State = function (game) {
         }
 
     }
-    this.update = () => {
+    this.update = function () {
     }
 }
 var main2State = function (game) {
     var sum1 = sum2 = sum3 = 0, text
-    this.create = () => {
+    this.create = function () {
         var b01 = game.add.group()
         var b01_map = b01.create(0, 0, 'b02-01')
         var popup1 = game.add.image(0, 0, 'b02-02')
@@ -507,8 +514,8 @@ var main2State = function (game) {
         var b01_click = game.add.button(1070, 165, 'click', function () {
             common.clickVisible(arrClick) // 移除所有点击事件
             common.throughTween(popup1, 2, sum1, function () {
-                var content = '富春环保争做世界级的环\n境治理专家。'
-                text = game.add.text(310, 740, '', { fontSize: "22px", fill: "#333", fontWeight: 'normal' })
+                var content = `富春环保自2005年投运以来，\n已连续十二年为富阳城区处理\n垃圾210万吨，污泥275万吨，\n有效保护了生态环境。 未来将\n争做世界级的环境治理专家。`
+                text = game.add.text(276, 629, '', { fontSize: "24px", fill: "#333", fontWeight: 'normal' })
                 common.PrintText(text, content, function () {
                     popup1.addChild(closeButton)
                     closeButton.visible = true
@@ -603,7 +610,7 @@ var main2State = function (game) {
 }
 var main3State = function (game) {
     var sum1 = sum2 = sum3 = sum4 = sum5 = 0, text
-    this.create = () => {
+    this.create = function () {
         var c01 = game.add.group()
         var c01_map = c01.create(0, 0, 'c03-01')
         var popup1 = game.add.image(0, 0, 'c03-02')
@@ -821,7 +828,7 @@ var main3State = function (game) {
 }
 var main4State = function (game) {
     var sum1 = sum2 = sum3 = 0, text
-    this.create = () => {
+    this.create = function () {
         var d01 = game.add.group()
         var d01_map = d01.create(0, 0, 'd04-01')
         var popup1 = game.add.image(0, 0, 'd04-02')
@@ -848,7 +855,7 @@ var main4State = function (game) {
 
         // 按钮1
         var d01_click = game.add.button(980, 134, 'click', function () {
-            common.hide_R_L() // 隐藏左右按钮            
+            common.hide_R_L() // 隐藏左右按钮
             common.clickVisible(arrClick) // 移除所有点击事件
             common.Tween(popup1, true).onComplete.add(function () { // 补间动画
                 if (!sum1) {
@@ -963,7 +970,7 @@ var main4State = function (game) {
 }
 var main5State = function (game) {
     var sum1 = sum2 = sum3 = 0, text, stateMp3
-    this.create = () => {
+    this.create = function () {
 
         var e01 = game.add.group()
         var e01_map = e01.create(0, 0, 'e05-01')
@@ -996,8 +1003,8 @@ var main5State = function (game) {
             }
             bgIcon.visible = false // 隐藏背景音乐图标
             stateMp3 = game.add.audio('stateMp3')
-            stateMp3.play('', 0, .5, true) // 播放背景音乐
-            common.hide_R_L() // 隐藏左右按钮            
+            stateMp3.play('', 0, .3, true) // 播放背景音乐
+            common.hide_R_L() // 隐藏左右按钮
             common.clickVisible(arrClick) // 移除所有点击事件
             common.Tween(popup1, true).onComplete.add(function () { // 补间动画
                 /* 大雁动画 */
@@ -1069,7 +1076,7 @@ var main5State = function (game) {
         var e03_click = game.add.button(3198, 246, 'click', function () {
             common.clickVisible(arrClick) // 移除所有点击事件
             common.throughTween(popup3, 5, sum3, function () {
-                var content = `\t\t\t\t\t\t\t\t2015年，创业30周年之际\n，集团在富阳区慈善总会设立了\n2000万元留本冠名慈善基金，关\n爱弱势群体，为困难的父老乡亲\n送去温暖。`
+                var content = `\t\t\t\t\t\t\t\t2015年，创业30周年之际\n，集团在富阳区慈善总会设立了\n2000万元慈善基金，关爱弱势\n群体，为困难的父老乡亲送去温\n暖。`
                 text = game.add.text(262, 695, '', { fontSize: "22px", fill: "#333", fontWeight: '400' })
 
                 common.PrintText(text, content, function () {
@@ -1090,14 +1097,8 @@ var main5State = function (game) {
             common.returnMp3() // 返回音乐
             // 弹框1
             if (popup1.alpha !== 0) {
-                console.log();
                 common.Tween(popup1, false)
-                if (bgIcon.frame != 24) { // 判断用户是不是进去之前就暂停背景音乐
-                    bgMp3.resume() // 恢复背景音乐
-                }
-                stateMp3.stop() //停止stateMp3
-
-                bgIcon.visible = true // 显示背景音乐图标
+                common.resumeMp3(stateMp3) // 恢复背景音乐
                 return
             }
             // 弹框2
@@ -1134,7 +1135,7 @@ var main5State = function (game) {
 }
 var main6State = function (game) {
     var sum1 = sum2 = sum3 = sum4 = 0, text, text1, stateMp3
-    this.create = () => {
+    this.create = function () {
         var f01 = game.add.group()
         var f01_map = f01.create(0, 0, 'f06-01')
         var popup1 = game.add.image(0, 0, 'f06-02')
@@ -1162,6 +1163,12 @@ var main6State = function (game) {
 
         // 场景1
         var f01_click = game.add.button(740, 346, 'click', function () {
+            /* 添加音乐 */
+            bgIcon.visible = false // 隐藏背景音乐图标
+            stateMp3 = game.add.audio('stateMp3')
+            stateMp3.play('', 0, .3, true) // 播放背景音乐
+            bgMp3.pause() // 停止背景音乐
+
             common.hide_R_L() // 隐藏左右按钮
             common.clickVisible(arrClick) // 移除所有点击事件
             common.Tween(popup1, true).onComplete.add(function () { // 补间动画
@@ -1192,7 +1199,7 @@ var main6State = function (game) {
             /* 添加音乐 */
             bgIcon.visible = false // 隐藏背景音乐图标
             stateMp3 = game.add.audio('stateMp3')
-            stateMp3.play('', 0, .5, true) // 播放背景音乐
+            stateMp3.play('', 0, .3, true) // 播放背景音乐
             bgMp3.pause() // 停止背景音乐
 
             common.hide_R_L() // 隐藏左右按钮
@@ -1284,17 +1291,14 @@ var main6State = function (game) {
             common.returnMp3() // 返回音乐
             // 弹框1
             if (popup1.alpha !== 0) {
+                common.resumeMp3(stateMp3) // 恢复背景音乐
                 common.Tween(popup1, false)
                 return
             }
             // 弹框2
             if (popup2.alpha !== 0) {
-                if (bgIcon.frame != 24) { // 判断用户是不是进去之前就暂停背景音乐
-                    bgMp3.resume() // 恢复背景音乐
-                }
+                common.resumeMp3(stateMp3) // 恢复背景音乐
                 common.Tween(popup2, false)
-                stateMp3.stop() //停止stateMp3
-                bgIcon.visible = true // 显示背景音乐图标
                 return
             }
             // 弹框3
@@ -1333,7 +1337,7 @@ var main6State = function (game) {
 }
 var main7State = function (game) {
     var sum1 = sum2 = sum3 = sum4 = 0
-    this.create = () => {
+    this.create = function () {
         var j01 = game.add.group()
         var j01_map = j01.create(0, 0, 'j07-01')
         var popup1 = game.add.image(0, 0, 'j07-02')

@@ -1,7 +1,6 @@
 var menuState = function (game) {
-    let popUpIs, position, map, time
-    this.init = () => { }
-    this.create = () => {
+    var popUpIs, position, map, time
+    this.create = function() {
 
         /* 添加地图 */
         map = game.add.image(0, 0, 'map')
@@ -41,7 +40,6 @@ var menuState = function (game) {
         var cloud = game.add.sprite(2, 257, 'cloud')
         game.add.tween(cloud).to({ x: 140, y: 195 }, 2200, 'Linear', true, 1, 99999, true)
         map.addChild(cloud)
-        key(cloud)
 
         /* 国旗动画 */
         var banner = game.add.sprite(42, 1042, 'banner')
@@ -209,7 +207,7 @@ var menuState = function (game) {
 
 
     }
-    this.update = () => {
+    this.update = function() {
 
         if (renPosition.r == 1) {
             map.y = 0

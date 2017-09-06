@@ -1,4 +1,4 @@
-let game = new Phaser.Game(640, 1008, Phaser.AUTO, 'container')
+var game = new Phaser.Game(640, 1008, Phaser.AUTO, 'container')
 
 var renPosition = { x: 370, y: 415, t: 1, k: 0 }
 game.state.add('boot', bootState)
@@ -40,10 +40,10 @@ function bgmFun() {
     }
 }
 /* 调位置 */
-function key(name) {
+/* function key(name) {
     name.inputEnabled = true;
     name.input.enableDrag();
     name.events.onDragStop.add(function () {
         console.log("x:" + name.x + "," + name.y);
     }, this);
-}
+} */
