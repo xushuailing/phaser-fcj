@@ -92,7 +92,7 @@ var menuState = function (game) {
         pool.animations.play('pool', 3, true)
         map.addChild(pool)
 
-        /* 玻璃 */
+        /* 玻璃 1*/
         var glass = game.add.sprite(410, 1489, 'glass')
         game.add.tween(glass).to({ alpha: 0 }, 1000, 'Linear', true, 1, 99999, true)
         map.addChild(glass)
