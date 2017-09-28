@@ -253,11 +253,19 @@ var common = {
     },
     resumeMp3: function (stateMp3) { // 恢复背景音乐
         if (bgIcon.frame != 24) { // 判断用户是不是进去之前就暂停背景音乐
+<<<<<<< HEAD
             var sum = 0
             var a = setInterval(function () {
                 bgMp3.resume() // 恢复背景音乐
                 sum += .1
                 bgMp3.volume = Math.floor(sum * 10) / 100
+=======
+            let sum = 0
+            let a = setInterval(() => {
+                bgMp3.resume() // 恢复背景音乐
+                sum += .1
+                bgMp3.volume = Math.floor(sum*10) / 100
+>>>>>>> 6212cde66564c8e82247792b2b8e4e875210efb6
                 if (Math.floor(sum) == 5) {
                     clearInterval(a)
                 }
@@ -515,7 +523,11 @@ var main2State = function (game) {
             common.clickVisible(arrClick) // 移除所有点击事件
             common.throughTween(popup1, 2, sum1, function () {
                 var content = `富春环保自2005年投运以来，\n已连续十二年为富阳城区处理\n垃圾210万吨，污泥275万吨，\n有效保护了生态环境。 未来将\n争做世界级的环境治理专家。`
+<<<<<<< HEAD
                 text = game.add.text(276, 629, '', { fontSize: "24px", fill: "#333", fontWeight: 'normal' })
+=======
+                text = game.add.text(276,629, '', { fontSize: "24px", fill: "#333", fontWeight: 'normal' })
+>>>>>>> 6212cde66564c8e82247792b2b8e4e875210efb6
                 common.PrintText(text, content, function () {
                     popup1.addChild(closeButton)
                     closeButton.visible = true
